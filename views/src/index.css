@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+
+.bg{
+    @apply hover:bg-no-repeat hover:bg-cover w-1/4 hover:h-[280px] hover:relative z-[2] hover:after:content-[''] hover:after:absolute hover:after:z-[-1] hover:after:opacity-80 hover:after:w-full hover:after:top-0 hover:after:left-0 hover:after:bg-lime-500 hover:after:h-full hover:after:brightness-50 hover:transition hover:ease-in-out hover:delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 hover:after:rounded-2xl hover:rounded-2xl hover:text-white transition-all translate-y-0 duration-300;
+}
+.comment{
+    @apply hover:delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300
+}
+.head.fixed-header{
+    @apply fixed top-0 left-0 w-full z-50 text-black bg-white transition-all drop-shadow-2xl;
+}
+nav.text-blacck{
+    @apply text-black;
+}
+.color.header-icon{
+    @apply bg-lime-600 text-white;
+}
+@tailwind utilities;

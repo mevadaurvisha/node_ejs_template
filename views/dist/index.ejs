@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Restaurant Website</title>
+        <link rel="shortcut icon" href="images/logo/favicon-icon.png" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/slick.css">
+        <link rel="stylesheet" href="css/swiper-bundle.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <style>
+            .content-img {
+                animation: dashed-circle 10s ease infinite alternate;
+                }
+                @keyframes dashed-circle{
+                from{
+                    transform: rotate(0deg);
+                }
+                to{
+                    transform: rotate(360deg);
+                }
+            }
+            .animate-motion {
+                animation: motion 7s infinite !important;
+                }
+                @keyframes motion{
+                0% {
+                    transform: translateY(0);
+                }
+                25% {
+                    transform: translate(-15px, -15px);
+                }
+                50% {
+                    transform: translate(-8px, -8px);
+
+                }
+                75% {
+                    transform: translate(-15px, 8px);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+            .swigo-logo {
+                animation: swigo-logo 2s infinite !important;
+                }
+                @keyframes swigo-logo {
+                0% {
+                    transform: rotate(0);
+                }
+                45% {
+                    transform: translate3d(-4%, -13%, 0) rotate(-13deg);
+                }
+                55% {
+                    transform: translate3d(1%, -2%, 0) rotate(6deg);
+                }
+                65% {
+                    transform: translate3d(-2%, -4%, 0) rotate(-3deg);
+                }
+                75% {
+                    transform: translate3d(2%, 3%, 0) rotate(3deg);
+                }
+                80% {
+                    transform: translate3d(-2%, 1%, 0) rotate(-2deg);
+                }
+                100% {
+                    transform: none;
+                }
+            }
+            .animate-move {
+                animation: move 7s infinite !important;
+            }   
+            @keyframes move {
+                0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-25px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            75% {
+                transform: translateY(-25px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .cursor {
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            border: 1px solid green;
+            transition: all 200ms ease-out;
+            position: fixed;
+            pointer-events: none;
+            left: 0;
+            top: 0;
+            transform: translate(calc(-50% + 15px), -50%);
+            }
+
+            .cursor2 {
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background-color: yellow;
+            opacity: .3;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: width .3s, height .3s, opacity .3s;
+            }
+
+            /* back to top */
+            .back-to-top{
+                display: none;
+            }
+            .top{
+                display: flex;
+                position: fixed;
+                transition: all 0.4s;
+                bottom: 5%;
+                right: 3%;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                padding: 20px;
+                background-color: transparent;
+                border: 1px solid #7CA549;
+                justify-content: center;
+                align-items: center;
+                z-index: 999;
+            }
+            .top a{
+                color: #7CA549;
+            }
+            .dropdown ul li a:hover{
+                color: #7CA549;
+            }
+            .hidden{
+                overflow: hidden;
+            }
+            .loader{
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                position: fixed;
+                z-index: 99999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .today-img::after{
+                    content: "";
+                    position: absolute;
+                    opacity: 0;
+                    top: 0%;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transition: all 0.5s;
+                    z-index: 1;
+                    background-image: linear-gradient(to top, #222 0.33%, rgba(34, 34, 34, 0) 101%);
+            }
+            .img-hov{
+                content: "";
+                position: absolute;
+                top: -100%;
+                background-color: var(--primary);
+                z-index: 0;
+                width: 335px;
+                height: 335px;
+                border-radius: 50%;
+                transform: translateX(-50%);
+                left: 50%;
+                transition: all 0.5s;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- loader -->
+    <!-- <div class="loader">
+        <img src="images/gif/loading.gif" alt="">
+    </div> -->
+        <!-- back-to-top-------------------------------------- -->
+        <div class="back-to-top ">
+            <a href="./index.html" class="text-[#7CA549]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                    <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                </svg>
+                  
+            </a>
+          </div>
+        <!-- header------------------------------------------- -->
+        <header class="absolute head z-10 w-full">
+            <div class="container mx-auto py-8  flex items-center">
+                <div class="w-40 relative">
+                    <img src="images/logo/logo (1).png">
+                </div>
+                <div class="absolute top-7 left-[190px] swigo-logo">
+                    <img src="images/logo/pan1.png">
+                </div>
+                <nav class="ml-auto">
+                    <ul class="flex mr-20 ">
+                        <li class="flex items-center px-3 relative group">
+                                <a href="../dist/index.html">Home</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                 <div class="dropdown absolute top-[120%] left-0 bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                    <ul>
+                                        <li class="pt-1">
+                                            <a href="index.html">Home-01</a>
+                                        </li>
+                                        <li class="pt-1">
+                                            <a href="#">Home-01</a>
+                                        </li>
+                                        <li class="pt-1">
+                                            <a href="#">Home-01</a>
+                                        </li>
+                                    </ul>
+                                 </div> 
+                        </li>
+                        <li class="flex items-center px-3 relative group">
+                                <a href="page/team.html">Pages</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                  <div class="dropdown absolute top-[120%] left-0 bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                    <ul>
+                                        <li class="pt-1">
+                                            <a href="./page/aboutUs.html">About Us  -</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="./page/faq.html">FAQ -</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Coming Soon</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Team Details</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Testimonials</a>
+                                        </li>
+                                    </ul>
+                                 </div>  
+                        </li>
+                        <li class="flex items-center px-3 relative group">
+                                <a href="page/shop.html">Shop</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                  <div class="dropdown absolute top-[120%] left-0 bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                    <ul>
+                                        <li class="pt-1">
+                                            <a href="./page/shop.html">Shop Wishlist-</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="./page/team.html">Team -</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Shop Cart</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Product Detail</a>
+                                        </li>
+                                    </ul>
+                                 </div>  
+                        </li>
+                         <li class="flex items-center px-3 relative group">
+                                <a href="page/bloglist.html">Blogs</a>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                  </svg>
+                                  <div class="dropdown absolute top-[120%] left-0 bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                    <ul>
+                                        <li class="pt-1">
+                                            <a href="./page/bloglist.html">Blog List-</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="./page/services.html">Services-</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Blog Detail</a>
+                                        </li>
+                                        <li class="pt-2">
+                                            <a href="#">Blog Grid</a>
+                                        </li>
+                                    </ul>
+                                 </div> 
+                        </li>
+                        <li class="flex items-center">
+                                <a href="page/contact.html" class="px-2.5">Contact Us</a>
+                        </li>
+                    </ul>
+                </nav>
+                    <div>
+                        <ul class="flex">
+                            <li class="header-icon bg-white mr-5 px-3 py-3 rounded-lg">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="header-icon bg-white px-3 py-3 rounded-lg">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                    </svg>                                      
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </header>
+        <main>
+            <!-- banner------------------------------------------ -->
+            
+            <section class="bg-lime-100 pt-20 pb-8 relative max-w-full overflow-hidden">
+                <div class="container mx-auto">
+                    <div class="row flex">
+                        <div class="md:7/12 pt-28">
+                            <span class="text-orange-400 text-xl font-medium"data-aos="fade-right">High Quality Test Station </span>
+                            <h1 class="text-7xl font-normal leading-tight font-display my-4"data-aos="fade-right">Choosing The <br> Best <span class="text-lime-600"data-aos="fade-right">Quality Food</span></h1>
+                            <p class="text-lg text-zinc-500 my-4"data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit,<br> sed do eiusmod tempor incididunt ut labore et dolore <br> magna aliqua.</p>
+                            <div class="mt-14">
+                                <a href="#" class="bg-lime-600 hover:bg-transparent border-lime-600 border-2 py-4 px-10 mr-5 text-white hover:text-lime-600 rounded-lg font-medium duration-300" data-aos="flip-left">Book Table</a>
+                                <a href="#" class="border-lime-600 hover:bg-lime-600 border-2 py-4 px-10 text-lime-600 hover:text-white rounded-lg font-medium duration-300" data-aos="flip-right">View More</a>
+                            </div>
+                            <div class="swiper w-[700px] h-[300px]">
+                                <div class="swiper-wrapper">
+                                  <div class="swiper-slide">
+                                    <div class="flex pt-36 pr-4">
+                                        <img src="images/banner-img/pic1.jpg" alt="" class="mr-4  rounded-lg ">
+                                            <ul>
+                                                <li class="pt-2">
+                                                    <a href="#" class="text-xl font-semibold ">BreakFast</a>
+                                                    <p class="text-sm text-zinc-500 pt-2">Lorem ipsum dolor sit amet,<br>consectetur adipisicing elit.</p>
+                                                </li>
+                                            </ul>
+                                    </div>
+                                  </div>
+                                  <div class="swiper-slide">
+                                    <div class="flex pt-36 pr-4" >
+                                        <img src="images/banner-img/pic2.jpg" alt="" class="mr-4  rounded-lg ">
+                                            <ul>
+                                                <li class="pt-2">
+                                                    <a href="#" class="text-xl font-semibold ">Lunch</a>
+                                                    <p class="text-sm text-zinc-500 pt-2">Lorem ipsum dolor sit amet,<br>consectetur adipisicing elit.</p>
+                                                </li>
+                                            </ul>
+                                    </div>
+                                  </div>
+                                  <div class="swiper-slide">
+                                    <div class="flex pt-36" >
+                                        <img src="images/banner-img/pic3.jpg" alt="" class="mr-4  rounded-lg ">
+                                            <ul>
+                                                <li class="pt-2">
+                                                    <a href="#" class="text-xl font-semibold ">Dinner</a>
+                                                    <p class="text-sm text-zinc-500 pt-2">Lorem ipsum dolor sit amet,<br>consectetur adipisicing elit.</p>
+                                                </li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-32">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam corporis laborum, quos vel ducimus ipsum ratione, fuga necessitatibus cum est accusamus commodi in reprehenderit debitis possimus dolor magnam quam ullam. Dolores quod perferendis ipsa sapiente, sit fuga harum quibusdam sequi numquam inventore. Pariatur vitae ipsam, ex suscipit eveniet cumque provident fuga eius dolorem temporibus molestias sequi fugiat! Minus, quae incidunt quo exercitationem praesentium quis ratione necessitatibus dignissimos asperiores et veniam enim perferendis vel tempora expedita unde eveniet quos culpa, saepe amet, eos autem? Est aliquam id impedit praesentium iste harum, laudantium fuga cupiditate alias saepe recusandae at autem repellat minus!</div>
+                        </div>
+                        <div class="md:5/12 bg-lime-600 ml-auto absolute top-0 right-0">
+                            <img src="images/banner-img/img3.png" class="opacity-55">
+                            <img src="images/banner-img/pic1.png" class="absolute top-16 right-80">
+                        </div>
+                        <img src="images/banner-img/img1.png" class="absolute top-36 right-36">
+                        <img src="images/banner-img/img2.png" class="absolute top-12 left-2/4 animate-motion">
+                       
+                    </div>
+                    
+                </div>
+            </section>
+            <!-- special-menu------------------------------------ -->
+            <section class="pt-28 relative ">
+                <img src="images/side-img/pic2.png" class="absolute -left-72 bottom-10 animate-move">
+                <img src="images/side-img/pic3.png" class="absolute right-0">
+                <div class="container mx-auto">
+                    <div class="text-center font-medium text-6xl font-display text text-lime-950">
+                     <h2>Special Menu</h2>
+                    </div>
+                    <div class="flex pt-14">
+                        
+                        <div class="w-3/12 mr-20 text-center ml-20 relative" data-aos="zoom-in">
+                            <div class="bg-white  drop-shadow pt-10">
+                                <div class="content-img flex justify-center align-middle">
+                                    <img src="images/special-menu/pic1 (1).jpg" class="w-36 border-white rounded-full border-8">
+                                </div>
+                                <div class="content-title pt-8">
+                                    <h3 class="text-2xl font-semibold">Pizza</h3>
+                                    <p class="pt-4 text-gray-500 text-sm">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</p>
+                                    <p class="font-bold pt-4 text-xl text-lime-600">$55.00</p>
+                                   <div class="add-cart-btn pt-8 pb-10">
+                                    <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3  rounded-lg text-white ">
+                                        Add To Cart
+                                    </a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-3/12 mr-20 text-center" data-aos="zoom-in">
+                            <div class="bg-white  drop-shadow pt-10 ">
+                                <div class="content-img flex justify-center align-middle ">
+                                    <img src="images/special-menu/pic2.jpg" alt="" class="w-36 border-8 border-white">
+                                </div>
+                                <div class="content-title pt-8">
+                                    <h3 class="text-2xl font-semibold">Rice</h3>
+                                    <p class="pt-4 text-gray-500 text-sm">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</p>
+                                    <p class="font-bold pt-4 text-xl text-lime-600">$50.00</p>
+                                   <div class="add-cart-btn pt-8 pb-10">
+                                    <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3  rounded-lg text-white ">
+                                        Add To Cart
+                                    </a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-3/12 mr-20 text-center" data-aos="zoom-in">
+                            <div class="bg-white  drop-shadow pt-10 hover:border-lime-900">
+                                <div class="content-img flex justify-center align-middle ">
+                                    <img src="images/special-menu/pic3.jpg" alt="" class="w-36 border-8 border-white">
+                                </div>
+                                <div class="content-title pt-8">
+                                    <h3 class="text-2xl font-semibold">Green Salad</h3>
+                                    <p class="pt-4 text-gray-500 text-sm">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</p>
+                                    <p class="font-bold pt-4 text-xl text-lime-600">$45.00</p>
+                                   <div class="add-cart-btn pt-8 pb-10">
+                                    <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3  rounded-lg text-white ">
+                                        Add To Cart
+                                    </a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-3/12 mr-20 text-center" data-aos="zoom-in">
+                            <div class="bg-white  drop-shadow pt-10 ">
+                                <div class="content-img flex justify-center align-middle ">
+                                    <img src="images/special-menu/pic4.jpg" alt="" class="w-36 border-8 border-white">
+                                </div>
+                                <div class="content-title pt-8">
+                                    <h3 class="text-2xl font-semibold">Pasta</h3>
+                                    <p class="pt-4 text-gray-500 text-sm">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</p>
+                                    <p class="font-bold pt-4 text-xl text-lime-600">$35.00</p>
+                                   <div class="add-cart-btn pt-8 pb-10">
+                                    <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3  rounded-lg text-white ">
+                                        Add To Cart
+                                    </a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </section>
+
+            <!-- today-menu----------------------------------------------- -->
+
+            <section class="pt-24 relative">
+                <img src="images/side-img/pic4.png" class="absolute right-7 top-32">
+                <img src="images/side-img/pic3.png" class="absolute -bottom-32 left-7">
+                <div class="bg-[#F4FDE7]">
+                    <div class="container mx-auto pt-20 ">
+                        <div class="text-center font-medium text-6xl font-display text-lime-950">
+                            <h2>Today' Menu</h2>
+                        </div>
+                        <div class=" flex flex-wrap pt-14">
+                            <div class="w-full md:w-6/12 lg:w-3/12 py-2"data-aos="zoom-in"> 
+                                <div class="menu-img relative px-4 overflow-hidden">
+                                    <div class="relative today-img bg-cover bg-no-repeat w-full h-[400px] rounded-xl overflow-hidden group hover:after:opacity-90 " style="background-image: url('./images/today-menu-img/pic2\ \(1\).jpg');">
+                                        <div class="bg-[#FE9F30] inline-block rounded-br-xl ">
+                                            <span class="uppercase p-2 text-white text-sm font-medium">top seller</span>
+                                        </div>
+                                        <div class=" menu-content absolute bottom-0 left-0 w-full bg-white p-4 duration-300 visible opacity-100 group-hover:opacity-0 group-hover:invisible">
+                                            <h4 class="text-center font-semibold text-xl">Pasta</h4>
+                                            <P class="text-base text-center pt-2 text-gray-500">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</P>
+                                        </div>
+                                        <div class="hover-content absolute bottom-4 left-3 duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 z-[2]">
+                                            <h4 class="absolute -top-16 pl-4 font-semibold text-xl text-white">Pasta</h4>
+                                            <p class="absolute -top-9 pl-4 font-semibold text-xl text-orange-400">$35.00</p>
+                                            <div class=" bg-white mr-5 px-3 py-3 rounded-lg absolute -top-14 left-[260px] ">
+                                                <a href="#" class="ml-auto text-[#65A30F]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke:li">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>                                                  
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                            <div class="w-full md:w-6/12 lg:w-3/12 py-2"data-aos="zoom-in"> 
+                                <div class="menu-img relative px-4 overflow-hidden">
+                                    <div class="relative today-img bg-cover bg-no-repeat w-full h-[400px] rounded-xl overflow-hidden group hover:after:opacity-90 " style="background-image: url('./images/today-menu-img/pic5.jpg');">
+                                        <div class="bg-[#FE9F30] inline-block rounded-br-xl">
+                                            <span class="uppercase p-2 text-white text-sm font-medium">top seller</span>
+                                        </div>
+                                        <div class="menu-content absolute bottom-0 left-0 w-full bg-white p-4 duration-300 visible opacity-100 group-hover:opacity-0 group-hover:invisible">
+                                            <h4 class="text-center font-semibold text-xl">Oreo Shake</h4>
+                                            <P class="text-base text-center pt-2 text-gray-500">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</P>
+                                        </div>
+                                        <div class="hover-content absolute bottom-4 left-3 duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 z-[2]">
+                                            <h4 class="absolute -top-16 pl-4 font-semibold text-xl text-white">Shake</h4>
+                                            <p class="absolute -top-9 pl-4 font-semibold text-xl text-orange-400">$35.00</p>
+                                            <div class=" bg-white mr-5 px-3 py-3 rounded-lg absolute -top-14 left-[260px] ">
+                                                <a href="#" class="ml-auto text-[#65A30F]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke:li">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>                                                  
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                            <div class="w-full md:w-6/12 lg:w-3/12 py-2"data-aos="zoom-in"> 
+                                <div class="menu-img relative px-4 overflow-hidden">
+                                    <div class="relative today-img bg-cover bg-no-repeat w-full h-[400px] rounded-xl overflow-hidden group hover:after:opacity-90 " style="background-image: url('./images/today-menu-img/pic4.jpg');">
+                                        <div class="bg-[#FE9F30] inline-block rounded-br-xl">
+                                            <span class="uppercase p-2 text-white text-sm font-medium">top seller</span>
+                                        </div>
+                                        <div class="menu-content absolute bottom-0 left-0 w-full bg-white p-4 duration-300 visible opacity-100 group-hover:opacity-0 group-hover:invisible">
+                                            <h4 class="text-center font-semibold text-xl">Dal Fry</h4>
+                                            <P class="text-base text-center pt-2 text-gray-500">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</P>
+                                        </div>
+                                        <div class="hover-content absolute bottom-4 left-3 duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 z-[2]">
+                                            <h4 class="absolute -top-16 pl-4 font-semibold text-xl text-white">Dal</h4>
+                                            <p class="absolute -top-9 pl-4 font-semibold text-xl text-orange-400">$25.00</p>
+                                            <div class=" bg-white mr-5 px-3 py-3 rounded-lg absolute -top-14 left-[260px] ">
+                                                <a href="#" class="ml-auto text-[#65A30F]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke:li">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>                                                  
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                            <div class="w-full md:w-6/12 lg:w-3/12 py-2"data-aos="zoom-in"> 
+                                <div class="menu-img relative px-4 overflow-hidden">
+                                    <div class="relative today-img bg-cover bg-no-repeat w-full h-[400px] rounded-xl overflow-hidden group hover:after:opacity-90 " style="background-image: url('./images/today-menu-img/pic6.jpg');">
+                                        <div class="bg-[#FE9F30] inline-block rounded-br-xl">
+                                            <span class="uppercase p-2 text-white text-sm font-medium">top seller</span>
+                                        </div>
+                                        <div class="menu-content absolute bottom-0 left-0 w-full bg-white p-4 duration-300 visible opacity-100 group-hover:opacity-0 group-hover:invisible">
+                                            <h4 class="text-center font-semibold text-xl">Pizza</h4>
+                                            <P class="text-base text-center pt-2 text-gray-500">Lorem ipsum dolor sit amet<br>consectetur adipiscing.</P>
+                                        </div>
+                                        <div class="hover-content absolute bottom-4 left-3 duration-300 invisible opacity-0 group-hover:visible group-hover:opacity-100 z-[2]">
+                                            <h4 class="absolute -top-16 pl-4 font-semibold text-xl text-white">Pizza</h4>
+                                            <p class="absolute -top-9 pl-4 font-semibold text-xl text-orange-400">$35.00</p>
+                                            <div class=" bg-white mr-5 px-3 py-3 rounded-lg absolute -top-14 left-[260px] ">
+                                                <a href="#" class="ml-auto text-[#65A30F]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke:li">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>                                                  
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="see-all-btn text-center pt-20 pb-14"data-aos="flip-left">
+                            <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3  rounded-lg text-white ">
+                                See All Dishes
+                            </a>
+                        </div>
+                    </div>    
+                </div>
+            </section>
+
+            <!-- Quality Service's------------------------------------------------ -->
+
+            <section class="bg-[#F4FDE7]">
+                <div class="container mx-auto ">
+                    <div class="text-center font-medium text-6xl font-display text-lime-950 pt-11 mb-16 ">
+                        <h2>Quality Service's</h2>
+                    </div>
+                    <div class=" pt-20 relative"data-aos="zoom-in">
+                            <div class="bg-white rounded-2xl drop-shadow-2xl flex justify-center items-center absolute -top-3">
+                                <div class="bg hover:bg-[url('../images/quality-service/pic1.jpg')] px-4 text-center p-10">
+                                    <img src="images/quality-service/restaurant.png" class="w-24 h-24 mb-5 mx-auto">
+                                    <h5 class="font-bold mb-2 text-xl">Restaurant</h5>
+                                    <p class="px-12">Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                                </div>
+                                <div class="bg hover:bg-[url('../images/quality-service/pic2.jpg')] px-4 text-center p-10">
+                                    <img src="images/quality-service/cocktail.png" class="w-24 h-24 mb-5 mx-auto">
+                                    <h5 class="font-bold mb-2 text-xl">Bar</h5>
+                                    <p class="px-12">Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                                </div>
+                                <div class="bg hover:bg-[url('../images/quality-service/pic3.jpg')] px-4 text-center p-10">
+                                    <img src="images/quality-service/coffee-cup.png" class="w-24 h-24 mb-5 mx-auto">
+                                    <h5 class="font-bold mb-2 text-xl">Cafe</h5>
+                                    <p class="px-12">Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                                </div>
+                                <div class="bg hover:bg-[url('../images/quality-service/pic4.jpg')] px-4 text-center p-10">
+                                    <img src="images/quality-service/cake.png" class="w-24 h-24 mb-5 mx-auto">
+                                    <h5 class="font-bold mb-2 text-xl">Dessert</h5>
+                                    <p class="px-12">Lorem ipsum dolor sit amet, dipiscing elit, sed</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- From Our Menu--------------------------------------------------- -->
+            
+            <section  class="pt-72">
+                <div class="container mx-auto">
+                    <div class="text-center font-medium text-6xl font-display text-lime-950">
+                        <h2>From Our Menu</h2>
+                    </div>
+                    <div class="lazy pt-20">
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic1.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic2.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic3.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic4 (1).jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic1.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic2.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic3.jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                        <div class="" data-aos="zoom-in">
+                            <div class="our-menu mr-4">
+                                <img src="images/food-menu/pic4 (1).jpg" alt="" class="rounded-xl w-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Reservation -->
+             
+            <section class="bg-[url('../images/reservetion/pic1.png')] h-[575px] bg-no-repeat bg-fixed bg-cover mb-40 relative z-[2] after:content-[''] after:absolute after:z-[-1] after:opacity-100 after:w-full after:top-0 after:left-0 after:h-full  after:brightness-50 after:backdrop-blur-[6px]">
+                <div class="container mx-auto my-28 p-16"  data-aos="zoom-in">
+                    <h4 class="text-7xl text-center font-normal leading-tight font-display my-4 mb-12 opacity-100 text-white">Reservation</h4>
+                   <form action="" method="">
+                        <div class="flex flex-wrap items-center justify-center">
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg>                              
+                                <input type="text" placeholder="Your Name" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14 ml-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0 6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z" />
+                                </svg>                                                            
+                                <input type="tel" placeholder="Phone Number" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14 ml-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                                </svg>                                                            
+                                <input type="email" placeholder="Your Email" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                </svg>                                                           
+                                <input type="tel" placeholder="Number Of People" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14 ml-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                                </svg>                                                            
+                                <input type="date" placeholder="date" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                            <div class="w-1/4 text-white flex gap-x-6 border-b-2 border-white pb-4 mb-14 ml-14">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>                                                           
+                                <input type="datetime" placeholder="Time" class="outline-none bg-transparent text-lg placeholder-white">
+                            </div>
+                        </div>
+                   </form>
+                   <div class="mx-auto text-center">
+                        <a href="#" class="bg-white hover:bg-lime-600  border-white border-2 py-4 px-10 mr-5 text-black hover:text-white hover:border-lime-600 rounded-lg font-medium">Book Table</a>
+                   </div>
+                </div>
+            </section>
+
+
+              <!-- comment -->
+            <section class="relative overflow-hidden">
+                <img src="images/side-img/pic2.png" class="absolute -right-80 bottom-0 animate-move">
+                <div class="container mx-auto ">
+                    <h4 class="text-7xl text-center font-normal leading-tight font-display my-4 mb-12">Customer's Comment</h4>
+                    <div class="flex">
+                        <div class="w-7/12 comment-img">
+                            <div class="flex flex-wrap">
+                                <img src="images/comment/pic1.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                                <img src="images/comment/pic2.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                                <img src="images/comment/pic3.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                                <img src="images/comment/pic4.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                                <img src="images/comment/pic5.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                                <img src="images/comment/pic6.jpg" class="w-72 h-72 comment" data-aos="zoom-in">
+                            </div>
+                        </div>
+                        <div class="w-5/12 bg-lime-600 p-10">
+                            <p class="text-white text-xl leading-9" data-aos="zoom-in">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
+                            <div class="comment-text">
+                                <h5 class="text-white pt-24  leading-9 text-2xl font-bold">Jolly Roy</h5>
+                                <span class="text-white flex">Food Expert</span>
+                                <img src="images/comma/comma.png" class="ms-auto -mt-28">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Master Chefs----------------------------------- -->
+
+            <section class="pt-24">
+                <div class="bg-[#F4FDE7]">  
+                    <div class="container mx-auto pt-20 ">
+                        <div class="text-center font-medium text-6xl font-display text-lime-950">
+                            <h2>Master Chefs</h2>
+                        </div>
+                        <div class="lazy pt-14 pb-16">
+                            <div class="w-4/6" data-aos="zoom-in"> 
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic1.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                        <div>
+                                            <h4 class=" font-semibold text-xl">Sarah Albert</h4>
+                                            <P class=" text-lime-400">Senior Chef</P>
+                                        </div>
+                                        <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic2.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                    <div>
+                                        <h4 class=" font-semibold text-xl">John Doe</h4>
+                                        <P class="  text-lime-400">Senior Chef</P>
+                                    </div>
+                                    <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                        </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic3.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                        <div>
+                                            <h4 class=" font-semibold text-xl">Jemy carline</h4>
+                                        <P class=" text-lime-400">Senior Chef</P>
+                                        </div>
+                                        <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic4.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                       <div>
+                                         <h4 class=" font-semibold text-xl">Cotline Care</h4>
+                                        <P class=" text-lime-400">Senior Chef</P>
+                                    </div>
+                                    <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                        </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6 " data-aos="zoom-in"> 
+                                <div class="menu-img relative ">
+                                    <img src="images/maste -chefs/pic1.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                      <div>
+                                        <h4 class=" font-semibold text-xl">Sarah Albert</h4>
+                                        <P class="  text-lime-400">Senior Chef</P>
+                                      </div>
+                                      <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                        </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic2.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                      <div>
+                                        <h4 class=" font-semibold text-xl">John Doe</h4>
+                                        <P class=" text-lime-400">Senior Chef</P>
+                                      </div>
+                                      <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                        </svg>
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic3.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px]  w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                      <div>
+                                        <h4 class=" font-semibold text-xl">John Doe</h4>
+                                        <P class=" text-lime-400">Senior Chef</P>
+                                      </div>
+                                      <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                        </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-4/6" data-aos="zoom-in">
+                                <div class="menu-img relative">
+                                    <img src="images/maste -chefs/pic4.jpg" alt="" class=" rounded-lg w-80 bg-cover h-96">
+                                    <div class="menu-content absolute top-[295px] w-[320px] pt-4 pb-6 px-4 rounded-b-lg bg-white flex justify-between">
+                                        <div>
+                                            <h4 class="font-semibold text-xl">Cotline Care</h4>
+                                            <P class=" text-lime-400">Senior Chef</P>
+                                        </div>
+                                        <a href="#" class="py-3 px-4 font-medium bg-lime-600 text-white rounded-md  border-2 ml-6	border-white hover:text-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+                                              </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </section>
+
+            <!-- News & Blog----------------------------------------- -->
+
+             <section class="pt-24">
+                <div class="container mx-auto">
+                    <div class="text-center font-medium text-6xl font-display text-lime-950">
+                        <h2>News & Blog</h2>
+                    </div>
+                    <div class="news pt-16 flex justify-center items-center">
+                        <div class="w-6/12 " data-aos="zoom-in"> 
+                            <div class="menu-img flex bg-slate-50 rounded-lg w-[650px]">
+                                    <img src="images/news/pic1 (1).jpg" alt="" class=" rounded-lg w-[240px] bg-cover h-[240px] ">
+                                    <div class="new-contant px-10 pt-10">
+                                        <a href="#" class="text-2xl font-semibold">
+                                            Taste of Paradise Dishes
+                                        </a>
+                                        <p class="pt-2 text-gray-500">There are many variations of<br>passages of Lorem Ipsum available,<br>but the majority have.</p>
+                                        <div class="read-more-btn pt-8">
+                                            <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3 mr-5 rounded-lg text-white ">
+                                                Read More
+                                            </a>
+                                        </div>    
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="w-6/12 " data-aos="zoom-in"> 
+                            <div class="menu-img flex bg-slate-50  rounded-lg w-[650px] mr-8">
+                                <img src="images/news/pic2.jpg" alt="" class=" rounded-lg w-[240px] bg-cover h-[240px] ">
+                                <div class="new-contant px-10 pt-10">
+                                    <a href="#" class="text-2xl font-semibold">
+                                        The Fork & Knife
+                                    </a>
+                                    <p class="pt-2 text-gray-500">There are many variations of<br>passages of Lorem Ipsum available,<br>but the majority have.</p>
+                                    <div class="read-more-btn pt-8">
+                                        <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3 mr-5 rounded-lg text-white ">
+                                            Read More
+                                        </a>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-6/12 " data-aos="zoom-in"> 
+                            <div class="menu-img flex bg-slate-50 rounded-lg w-[650px] mr-8">
+                                <img src="images/news/pic3.jpg" alt="" class=" rounded-lg w-[240px] bg-cover h-[240px] ">
+                                <div class="new-contant px-10 pt-10">
+                                    <a href="#" class="text-2xl font-semibold">
+                                        Flavors Of The World
+                                    </a>
+                                    <p class="pt-2 text-gray-500">There are many variations of<br>passages of Lorem Ipsum available,<br>but the majority have.</p>
+                                    <div class="read-more-btn pt-8">
+                                        <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3 mr-5 rounded-lg text-white ">
+                                            Read More
+                                        </a>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-6/12 " data-aos="zoom-in"> 
+                            <div class="menu-img flex bg-slate-50 rounded-lg w-[650px] mr-8">
+                                <img src="images/news/pic4.jpg" alt="" class=" rounded-lg w-[240px] bg-cover h-[240px] ">
+                                <div class="new-contant px-10 pt-8">
+                                    <a href="#" class="text-2xl font-semibold">
+                                        The Spices Route Taste
+                                    </a>
+                                    <p class="pt-2 text-gray-500">There are many variations of<br>passages of Lorem Ipsum available,<br>but the majority have.</p>
+                                    <div class="read-more-btn pt-10">
+                                        <a href="#" class="bg-lime-600  border-lime-600 hover:bg-transparent hover:text-lime-600 border-2 px-4 py-3 mr-5 rounded-lg text-white ">
+                                            Read More
+                                        </a>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </section>
+
+            <!-- map------------------------------------------------ -->
+
+            <div class="grayscale pt-28">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119066.45845988028!2d72.66640397567068!3d21.15928887141961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e59411d1563%3A0xfe4558290938b042!2sSurat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1713963879794!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="cursor"></div>
+            <div class="cursor2"></div>
+
+        </main>
+        <!-- footer -->
+        <footer class="bg-[#222222] text-white relative pt-24">
+            <img src="images/side-img/pic3.png" class="absolute right-0 top-0">
+            <img src="images/side-img/pic5.png" class="absolute bottom-7 left-0 animate-move">
+            <div class="container mx-auto border-b  border-[#474747] pb-14">
+                <div class="flex">
+                    <div class="w-6/12">
+                        <div class="absolute left-80 -top-80">
+                            <div class="w-[470px] h-[677px] bg-[#7da640] rounded-lg p-10 text-white">
+                                <h3 class="text-5xl mb-3 font-normal font-display">Contact us</h3>
+                                <p class="text-md font-sans">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <form>
+                                    <input type="text" class=" border-0 border-b w-full mt-10 mb-5 pb-2 text-gray-300 bg-transparent placeholder-white outline-none" placeholder="Your Name" >
+                                    <input type="text" class=" border-0 border-b w-full mt-3 mb-5 pb-2 text-gray-300 bg-transparent placeholder-white outline-none" placeholder="Email Address">
+                                    <input type="text" class=" border-0 border-b w-full mt-3 mb-5 pb-2 text-gray-300 bg-transparent placeholder-white outline-none" placeholder="Subject">
+                                    <textarea type="text" class=" border-0 border-b w-full mt-3 mb-5 pb-10 text-gray-300 bg-transparent placeholder-white outline-none" row="5" placeholder="Message"></textarea>
+                                    <button class="py-4 px-8 font-medium bg-white text-zinc-900 rounded-md mt-12  border-2	border-white hover:text-white hover:bg-transparent">Send Message</button>
+                                </form>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="w-3/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">contact</h3>
+                        </div>
+                        <ul class="text-gray-300">
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+                                <li class=" capitalize "><a href="https://www.google.com/maps/search/1247%2FPlot+No.+39,+15th+Phase,+Colony,+Kkatpally,+Hyderabad/@17.4120779,78.0783859,10z/data=!3m1!4b1?entry=ttu">1247/Plot No. 39, 15th Phase, <br> Colony, Kkatpally, Hyderabad</a></li>
+                            </div>
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                </svg>
+                                <li class="capitalize"><a href="tel:+9876543210 ">+91 987-654-3210 </a><br><a href="tel:+1234567890"> +91 123-456-7890</a></li>
+                            </div>
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                                </svg>
+                                <li class="mb-5 capitalize "> <a href="mailto:info@example.com">info@example.com</a>
+                                    <a href="mailto:info@example.com">info@example.com</a></li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="w-2/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">our links</h3>
+                        </div>
+                        <ul class="p-0 list-unstyled fs-5 text-gray-300">
+                            <li class="mb-5 capitalize"><a href="./index.html">Home</a></li>
+                            <li class="mb-5 capitalize"><a href="./page/aboutUs.html">about us </a></li>
+                            <li class="mb-5 capitalize"><a href="./page/services.html">services</a></li>
+                            <li class="mb-5 capitalize"><a href="./page/team.html">Team</a></li>
+                            <li class="mb-5 capitalize"><a href="./page/bloglist.html">blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="w-2/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">our links</h3>
+                        </div>
+                        <ul class="p-0 list-unstyled fs-5 text-gray-300">
+                            <li class="mb-5 capitalize"><a href="./page/faq.html">faq</a></li>
+                            <li class="mb-5 capitalize"><a href="./page/shop.html">shop</a></li>
+                            <li class="mb-5 capitalize"><a href="#">Category Filter</a></li>
+                            <li class="mb-5 capitalize"><a href="#">Testimonials</a></li>
+                            <li class="mb-5 capitalize"><a href="./page/contact.html">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container mx-auto">
+                <div class="flex justify-between p-7 ">
+                    <div class="col-4/12"><h6>Copyright 2024 All rights reserved.</h6></div>
+                    <div class="col-3/12"><h6>Crafted With  by DexignZone</h6></div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/slick.min.js"></script>
+        <script src="js/swiper-bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+          </script>
+
+    <script>
+         // slider-------------
+
+        $(document).ready(function(){
+
+            const swiper = new Swiper('.swiper', {
+                // Optional parameters
+                loop: true,
+                autoplay: true,
+                slidesPerView: 2,
+                directiol: 'horizontal',
+
+                // If we need pagination
+                pagination: {
+                  el: '.swiper-pagination',
+                //   string: 'swiper-pagination-horizontal',
+                },
+            
+                // Navigation arrows
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+
+            });
+        }); 
+    </script>
+
+    <!-- From Our Menu-swiper------------------------------ -->
+
+    <script>
+        $(document).ready(function(){
+
+        $('.lazy').slick({
+            lazyLoad: 'ondemand',
+            autoplay: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            pervArrow: false,
+            nextArrow: false,
+        });
+
+        $('.news').slick({
+            lazyLoad: 'ondemand',
+            autoplay: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            pervArrow: false,
+            nextArrow: false,
+        });
+    });
+
+    </script>
+    <!-- pointer-events -->
+    <script>
+        var cursor = document.querySelector('.cursor');
+        var cursorinner = document.querySelector('.cursor2');
+        var a = document.querySelectorAll('a');
+
+        document.addEventListener('mousemove', function(e){
+        var x = e.clientX;
+        var y = e.clientY;
+        cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
+        });
+
+        document.addEventListener('mousemove', function(e){
+        var x = e.clientX;
+        var y = e.clientY;
+        cursorinner.style.left = x + 'px';
+        cursorinner.style.top = y + 'px';
+        });
+
+        document.addEventListener('mousedown', function(){
+        cursor.classList.add('click');
+        cursorinner.classList.add('cursorinnerhover')
+        });
+
+        document.addEventListener('mouseup', function(){
+        cursor.classList.remove('click')
+        cursorinner.classList.remove('cursorinnerhover')
+        });
+
+        a.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            cursor.classList.add('hover');
+        });
+        item.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+        });
+        })
+    </script>
+    <script>
+        //fixed-header
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                $(".head").addClass("fixed-header");
+                $(".header-icon").addClass("color");
+            }
+            else {
+                $(".head").removeClass("fixed-header");
+                $(".header-icon").removeClass("color");
+            }
+        });
+    </script>    
+    <!-- back to top -->
+    <script>
+
+        $(window).scroll(function(){
+            
+            if ($(this).scrollTop() > 400){
+        
+                $('.back-to-top').addClass("top");
+        
+            }else{
+                
+                $('.back-to-top').removeClass("top");
+        
+            }
+        })
+    </script>
+    <script>
+        //loader
+        $(window).on('load', function () {
+            $(".loader img").delay(2000).fadeOut(2000);
+            $(".loader").delay(2500).fadeOut(3000);
+
+            setTimeout(function () {
+                $("body").removeClass("hidden");
+            }, 3500);
+
+        });
+    </script>
+    </body>
+</html>

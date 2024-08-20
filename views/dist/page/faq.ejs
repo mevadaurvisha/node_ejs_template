@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+ <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Restaurant Website</title>
+        <link rel="shortcut icon" href="../images/logo/favicon-icon.png" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+       
+        <style>
+        
+            /* back to top */
+            .back-to-top{
+                display: none;
+            }
+            .top{
+                display: flex;
+                position: fixed;
+                transition: all 0.4s;
+                bottom: 5%;
+                right: 3%;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                padding: 20px;
+                background-color: transparent;
+                border: 1px solid #7CA549;
+                justify-content: center;
+                align-items: center;
+                z-index: 999;
+            }
+            .top a{
+                color: #7CA549;
+            }
+            .dropdown ul li a:hover{
+                color: #7CA549;
+            }
+            .hidden{
+                overflow: hidden;
+            }
+            .loader{
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                position: fixed;
+                z-index: 99999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+             <!-- loader -->
+        <div class="loader">
+            <img src="../images/gif/loading.gif" alt="">
+        </div>
+            <div class="back-to-top ">
+                <a href="./services.ejs" class="text-[#7CA549]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                    
+                </a>
+            </div>
+            <!-- header -->
+            <header class="absolute head w-full z-10">
+                <div class="container mx-auto py-8 flex flex-wrap justify-between items-center">
+                    <div class="w-6/12 sm:5/12 md:w-2/12 hidden relative logo-dark">
+                        <img src="../images/logo/logo (1).png">
+                    </div>
+                    <div class="w-6/12 sm:5/12 md:w-2/12 logo-white">
+                        <img src="../images/logo/logo-white.png">
+                    </div>
+                    <nav class=" w-6/12 text-white">
+                        <ul class="block  lg:flex flex-wrap justify-end">
+                            <li class="flex items-center px-3 relative group">
+                                    <a href="../index.ejs">Home</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                      </svg>
+                                     <div class="dropdown absolute top-[120%] left-0 text-black bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                        <ul>
+                                            <li class="pt-1">
+                                                <a href="../index.ejs">Home-01</a>
+                                            </li>
+                                            <li class="pt-1">
+                                                <a href="../index.ejs">Home-01</a>
+                                            </li>
+                                            <li class="pt-1">
+                                                <a href="../index.ejs">Home-01</a>
+                                            </li>
+                                        </ul>
+                                     </div> 
+                            </li>
+                            <li class="flex items-center px-3 relative group">
+                                    <a href="team.ejs">Pages</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                      </svg>
+                                      <div class="dropdown absolute top-[120%] left-0 text-black bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                        <ul>
+                                            <li class="pt-1">
+                                                <a href="aboutUs.ejs">About Us  -</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="faq.ejs">FAQ -</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Coming Soon</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Team Details</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Testimonials</a>
+                                            </li>
+                                        </ul>
+                                     </div>  
+                            </li>
+                            <li class="flex items-center px-3 relative group">
+                                    <a href="shop.ejs">Shop</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                      </svg>
+                                      <div class="dropdown absolute top-[120%] left-0 text-black bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                        <ul>
+                                            <li class="pt-1">
+                                                <a href="shop.ejs">Shop Wishlist-</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="team.ejs">Team -</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Shop Cart</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Product Detail</a>
+                                            </li>
+                                        </ul>
+                                     </div>  
+                            </li>
+                             <li class="flex items-center px-3 relative group">
+                                    <a href="bloglist.ejs">Blogs</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                      </svg>
+                                      <div class="dropdown absolute top-[120%] left-0 text-black bg-white min-w-40 py-2 px-5 drop-shadow-xl delay-75 ease-out duration-300 rounded-lg invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                                        <ul>
+                                            <li class="pt-1">
+                                                <a href="bloglist.ejs">Blog List-</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="services.ejs">Services-</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Blog Detail</a>
+                                            </li>
+                                            <li class="pt-2">
+                                                <a href="#">Blog Grid</a>
+                                            </li>
+                                        </ul>
+                                     </div> 
+                            </li>
+                            <li class="flex items-center">
+                                    <a href="contact.ejs" class="px-2.5">Contact Us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="text-white w-1/12 hamburgerMenu lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                          </svg>
+                          
+                    </div>
+                    <div class="hidden lg:block w-2/12">
+                        <ul class="flex">
+                            <li class="header-icon bg-white mr-5 px-3 py-3 rounded-lg">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="header-icon bg-white px-3 py-3 rounded-lg">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                    </svg>                                      
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+            </header>
+        <main>
+            <!-- banner -->
+            <section class="bg-[url('../images/banner-img/bnr2.jpg')] h-[450px] bg-no-repeat bg-fixed bg-cover relative z-[2] after:content-[''] after:absolute after:z-[-1] after:opacity-100 after:w-full after:top-0 after:left-0 after:h-full  after:brightness-50 after:backdrop-blur-[6px]">
+                <div class="container mx-auto text-center pt-52 pb-40 mb-5">
+                    <div class="text-center">
+                        <h2 class="text-7xl font-normal leading-tight font-display text-white"data-aos="zoom-in">Faq</h2>
+                        <div class="mt-14"data-aos="zoom-in">
+                            <a href="../index.ejs" class="bg-lime-600 border-lime-600 border-2 py-4 px-10 mr-5 text-white rounded-lg font-medium">Home > Faq</a>
+                        </div>
+                    </div>
+                    <form data-aos="zoom-in" action="" method="" class="md:flex hidden absolute p-6 bg-white drop-shadow-2xl rounded-xl gap-5 h-20 w-1/2 ml-72 mt-16 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <input type="text" placeholder="Why Should I Use Swigo ?" class="placeholder-[#9CA3AF] outline-none">
+                    </form>
+                </div>
+            </section>
+            <!-- Faq -->
+            <section class="mt-28">
+                <div class="container mx-auto">
+                    <ul>
+                        <li  class="sidebar-dropdown py-9 text-xl border-y-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q1: What are your hours of operation?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q2: What is your menu like?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q3: Do you have vegetarian/vegan/gluten-free options?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q4: Do you offer takeout or delivery?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q5: Can I make a reservation? How do I do that?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q6: Is your restaurant kid-friendly?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                        <li  class="sidebar-dropdown py-9 text-xl border-b-2 border-[#B1B1B1]">
+                            <a data-aos="zoom-in" href="javascript:void(0);" class="flex justify-between hover:text-lime-600 transition-all duration-150">Q7: What is your menu like?
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </a>
+                            <div class="sidebar-submenu hidden">
+                                <p class="pt-5 px-5 text-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Newsletter -->
+            <section class="mt-14">
+                <div class="container mx-auto flex flex-wrap">
+                    <div class="w-full lg:w-5/12 ml-16" data-aos="fade-right">
+                        <img src="../images/news/pic1.png">
+                    </div>
+                    <div class="w-full md:w-6/12 mt-24 mr-16">
+                        <h2 class="text-5xl font-bold" data-aos="fade-left">Newsletter</h2>
+                        <p class="mt-7 text-lg" data-aos="fade-left">We hope this newsletter finds you well. We are excited to announce some new additions to our menu that we think you'll love. Our culinary team has been. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                        <form action="" method="" data-aos="fade-left">
+                            <input type="email" placeholder="Enter Your Email" class="mt-16 p-5 w-full outline outline-1 outline-gray-400 bg-[#F8F8F8]">
+                                <!-- <div>
+                                    <a href="#" class="bg-lime-600 hover:bg-transparent border-lime-600 border-2 py-3 px-10 text-white hover:text-lime-600 rounded-lg font-medium">Submit</a>
+                                </div> -->
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- footer -->
+        <footer class="bg-[#222222] text-white relative pt-24 mt-24">
+            <img src="../images/side-img/pic3.png" class="absolute right-0 top-0">
+            <img src="../images/side-img/pic5.png" class="absolute bottom-7 left-0">
+            <div class="container mx-auto border-b  border-[#474747] pb-14">
+                <div class="flex flex-wrap gap-1">
+                    <div class="w-full md:w-6/12 lg:w-3/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">contact</h3>
+                        </div>
+                        <ul class="text-gray-300">
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+                                <li class=" capitalize  hover:text-lime-600 transition-all duration-150"><a href="https://www.google.com/maps/search/1247%2FPlot+No.+39,+15th+Phase,+Colony,+Kkatpally,+Hyderabad/@17.4120779,78.0783859,10z/data=!3m1!4b1?entry=ttu">1247/Plot No. 39, 15th Phase, <br> Colony, Kkatpally, Hyderabad</a></li>
+                            </div>
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                </svg>
+                                <li class="capitalize hover:text-lime-600 transition-all duration-150"><a href="tel:+9876543210 ">+91 987-654-3210 </a><br><a href="tel:+1234567890"> +91 123-456-7890</a></li>
+                            </div>
+                            <div class="flex gap-3 mt-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 flex stroke-lime-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
+                                </svg>
+                                <li class="mb-5 capitalize  hover:text-lime-600 transition-all duration-150"> <a href="mailto:info@example.com">info@example.com</a>
+                                    <a href="mailto:info@example.com">info@example.com</a></li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-5/12 lg:w-3/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">our links</h3>
+                        </div>
+                        <ul class="p-0 list-unstyled fs-5 text-gray-300">
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="../index.ejs">Home</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./aboutUs.ejs">about us </a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./services.ejs">services</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./team.ejs">Team</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./bloglist.ejs">blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-5/12 lg:w-3/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">OUR SERVICES</h3>
+                        </div>
+                        <ul class="p-0 list-unstyled fs-5 text-gray-300">
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Strategy & Research</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Fast Delivery</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Seat Reservation</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Pickup In Store</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Our Menu</a></li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-3/12 lg:w-2/12">
+                        <div class="footer-title">
+                            <h3 class="uppercase text-2xl font-semibold mb-5">HELP CENTER</h3>
+                        </div>
+                        <ul class="p-0 list-unstyled fs-5 text-gray-300">
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./faq.ejs">faq</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./shop.ejs">shop</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Category Filter</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="#">Testimonials</a></li>
+                            <li class="mb-5 capitalize hover:text-lime-600 transition-all duration-150"><a href="./contact.ejs">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container mx-auto">
+                <div class="flex justify-between p-7 ">
+                    <div class="col-4/12"><h6>Copyright 2024 All rights reserved.</h6></div>
+                    <div class="col-3/12"><h6>Crafted With by Bhumi Sojitra</h6></div>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="../js/jquery.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        <script>
+            $(document).ready(function(){
+                $(".sidebar-dropdown > a").click(function () {
+                $(".sidebar-submenu").slideUp(200);
+                    if ($(this).parent().hasClass("active")) {
+                        $(".sidebar-dropdown").removeClass("active");
+                        $(this).parent().removeClass("active");
+                    } else {
+                        $(".sidebar-dropdown").removeClass("active");
+                        $(this).next(".sidebar-submenu").slideDown(200);
+                        $(this).parent().addClass("active");
+                    }
+                });
+            });
+            
+        </script>
+        <script>
+            //fixed-header
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 300) {
+                    $(".head").addClass("fixed-header");
+                    $(".header-icon").addClass("color");
+                    $("nav").addClass("text-blacck");
+                    $(".logo-dark").removeClass("hidden");
+                    $(".logo-white").addClass("hidden");
+                }
+                else {
+                    $(".head").removeClass("fixed-header");
+                    $(".header-icon").removeClass("color");
+                    $("nav").removeClass("text-blacck");
+                    $(".logo-dark").addClass("hidden");
+                    $(".logo-white").removeClass("hidden");
+                }
+            });
+        </script> 
+        <script>
+    
+            $(window).scroll(function(){
+                
+                if ($(this).scrollTop() > 400){
+            
+                    $('.back-to-top').addClass("top");
+            
+                }else{
+                    
+                    $('.back-to-top').removeClass("top");
+            
+                }
+            })
+        </script>
+         <script>
+            //loader
+            $(window).on('load', function () {
+                $(".loader img").delay(2000).fadeOut(2000);
+                $(".loader").delay(2500).fadeOut(3000);
+    
+                setTimeout(function () {
+                    $("body").removeClass("hidden");
+                }, 3500);
+    
+            });
+        </script>
+    </body>
+</html>
